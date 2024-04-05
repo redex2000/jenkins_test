@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Список ангаров</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+<h1>Список ангаров</h1>
+<div class="row mb-3 text-center">
+    <div class="col-4 themed-grid-col">Планета</div>
+    <div class="col-4 themed-grid-col">Активен</div>
+</div>
+<div th:each="el : ${hangars}" class="alert alert-info mt-2">
+    <a th:href="'/hangars/' + ${el.id}">
+        <div class="row mb-3 text-center">
+            <div class="col-4 themed-grid-col"><p th:text="${el.planet}"/></div>
+            <div class="col-4 themed-grid-col">
+                <p th:if="${el.is_enabled==true}">Да</p>
+                <p th:if="${el.is_enabled==false}">Нет</p>
+            </div>
+        </div>
+    </a>
+</div>
+
+</body>
+</html>
